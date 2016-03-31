@@ -40,6 +40,7 @@ func NewLogstashAdapter(route *router.Route) (router.LogAdapter, error) {
 
 // NewLogstashTCPAdapter creates a LogstashAdapter with TCP as the transport.
 func NewLogstashTCPAdapter(route *router.Route) (router.LogAdapter, error) {
+	route.Adapter = "logstash+tcp"
 	transport, found := router.AdapterTransports.Lookup(route.AdapterTransport("tcp"))
 	if !found {
 		return nil, errors.New("unable to find adapter: " + route.Adapter)
